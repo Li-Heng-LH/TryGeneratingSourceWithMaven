@@ -20,6 +20,7 @@
     <dependencies>
 
         <!--Dependencies for xml-->
+        <!--Needed for java 11-->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
@@ -72,6 +73,9 @@
                 <version>0.14.0</version>
                 <executions>
                     <execution>
+                        <id>Generating java from xml</id>
+                        <!--set phase to test will not generate the classes-->
+                        <!--<phase>test</phase>-->
                         <goals>
                             <goal>generate</goal>
                         </goals>
