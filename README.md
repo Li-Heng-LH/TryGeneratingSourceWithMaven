@@ -25,6 +25,8 @@ Which will use xjc (XML Java Compiler) to generate Java files from xsd (XML Sche
 &nbsp;
 #### Generating Java files from json schema #####
 The 2nd task is to generate Java files from JSON Schema.  
-Example project using the [jasonschema2pojo Maven Plugin](https://joelittlejohn.github.io/jsonschema2pojo/site/0.5.1/generate-mojo.html)
+commons-lang3 and jackson-databind are included as they are used in the generated pojo to compile into java class.   
+If they are not included, compilation from generated pojo to java class will fail.  
 
+Example project using the [jasonschema2pojo Maven Plugin](https://joelittlejohn.github.io/jsonschema2pojo/site/0.5.1/generate-mojo.html)
 
