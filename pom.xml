@@ -19,7 +19,7 @@
 
     <dependencies>
 
-        <!--Dependencies for xml-->
+        <!--Dependencies for for generating sources from xml-->
         <!--Needed for java 11-->
         <dependency>
             <groupId>javax.xml.bind</groupId>
@@ -37,19 +37,21 @@
             <version>${jaxb.version}</version>
         </dependency>
 
-        <!--Dependencies for JSON-->
+
+        <!--Dependencies for generating sources from JSON-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.8.1</version>
         </dependency>
+        <!--General data-binding functionality for Jackson-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.9.10.1</version>
         </dependency>
-
     </dependencies>
+
 
     <build>
         <plugins>
@@ -67,6 +69,7 @@
                 </executions>
             </plugin>
 
+            <!-- Plugin for for generating sources from XML -->
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
@@ -76,6 +79,27 @@
                         <id>Generating java from xml</id>
                         <!--set phase to test will not generate the classes-->
                         <!--<phase>test</phase>-->
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!-- Plugin for for generating sources from Json -->
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>0.5.1</version>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/main/resources/schema</sourceDirectory>
+                    <targetPackage>me.liheng.jsonModel</targetPackage>
+                    <useCommonsLang3>true</useCommonsLang3>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>Generating java from Json</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
